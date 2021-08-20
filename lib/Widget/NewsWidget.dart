@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:inshortsapp/Model/model.dart';
 
 class NewsWidget extends StatelessWidget {
@@ -20,12 +21,11 @@ class NewsWidget extends StatelessWidget {
               SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height * .4,
-                  child: ClipRRect(
+                  child: Container(
                     child: Image.network(
                       fnews.newsImage,
                       fit: BoxFit.cover,
                     ),
-                    borderRadius: BorderRadius.circular(10),
                   )),
               Flexible(
                 child: Padding(
@@ -33,9 +33,40 @@ class NewsWidget extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(fnews.date),
-                      Text(fnews.title),
-                      Text(fnews.content)
+                      Text(
+                        fnews.date,
+                        style: GoogleFonts.poppins(fontSize: 14),
+                      ),
+                      Text(
+                        fnews.title,
+                        style: GoogleFonts.poppins(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Text(
+                        fnews.content,
+                        style: GoogleFonts.poppins(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Center(
+                        child: MaterialButton(
+                            elevation: 0,
+                            color: Colors.redAccent,
+                            child: Text(
+                              'Read Full News',
+                              style: GoogleFonts.poppins(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            onPressed: () {}),
+                      )
                     ],
                   ),
                 ),

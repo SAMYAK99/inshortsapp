@@ -45,9 +45,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: "Movies App",
-        home: Scaffold(
-            appBar: AppBar(title: Text("Movies")),
-            body: NewsWidget(news: _news)));
+        debugShowCheckedModeBanner: false,
+        home: SafeArea(
+          child: Scaffold(
+              backgroundColor: Colors.white, body: NewsWidget(news: _news)),
+        ));
   }
 }
