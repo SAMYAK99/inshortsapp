@@ -48,7 +48,10 @@ class _HomeScreenState extends State<HomeScreen> {
         debugShowCheckedModeBanner: false,
         home: SafeArea(
           child: Scaffold(
-              backgroundColor: Colors.white, body: NewsWidget(news: _news)),
+              backgroundColor: Colors.white,
+              body: _news == null
+                  ? CircularProgressIndicator()
+                  : NewsWidget(news: _news)),
         ));
   }
 }

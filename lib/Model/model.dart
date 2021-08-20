@@ -3,12 +3,14 @@ class NewsData {
   final String title;
   final String content;
   final String date;
+  final String url;
 
   NewsData(
       {required this.newsImage,
       required this.title,
       required this.content,
-      required this.date});
+      required this.date,
+      required this.url});
 
   factory NewsData.fromJson(Map<String, dynamic> json) {
     return NewsData(
@@ -17,6 +19,7 @@ class NewsData {
             : json["urlToImage"],
         title: json["title"],
         content: json["content"] == null ? "" : json["content"],
-        date: json["publishedAt"]);
+        date: json["publishedAt"],
+        url: json["url"]);
   }
 }

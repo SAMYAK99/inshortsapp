@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.projects.inshortsapp">
    <application
-        android:label="inshortsapp"
-        android:icon="@mipmap/ic_launcher">
+        android:label="InShort News"
+        android:icon="@drawable/icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

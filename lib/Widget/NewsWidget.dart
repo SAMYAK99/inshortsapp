@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:inshortsapp/Model/model.dart';
+import 'package:inshortsapp/views/DetailsScreen.dart';
+import 'package:share/share.dart';
 
 class NewsWidget extends StatelessWidget {
   final List<NewsData> news;
@@ -18,15 +20,32 @@ class NewsWidget extends StatelessWidget {
           return Container(
               child: Column(
             children: [
-              SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * .4,
-                  child: Container(
-                    child: Image.network(
-                      fnews.newsImage,
-                      fit: BoxFit.cover,
-                    ),
-                  )),
+              Stack(
+                children: [
+                  Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height * .4,
+                      child: Container(
+                        child: Image.network(
+                          fnews.newsImage,
+                          fit: BoxFit.cover,
+                        ),
+                      )),
+                  Container(
+                    alignment: Alignment.topRight,
+                    child: IconButton(
+                        onPressed: () {
+                          Share.share('Hey! Check out this News ${fnews.url}',
+                              subject: 'Look what I made!');
+                        },
+                        icon: Icon(
+                          Icons.share,
+                          color: Colors.red,
+                          size: 32,
+                        )),
+                  )
+                ],
+              ),
               Flexible(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -56,6 +75,7 @@ class NewsWidget extends StatelessWidget {
                       ),
                       Center(
                         child: MaterialButton(
+                            shape: StadiumBorder(),
                             elevation: 0,
                             color: Colors.redAccent,
                             child: Text(
@@ -65,7 +85,14 @@ class NewsWidget extends StatelessWidget {
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
-                            onPressed: () {}),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ArticleView(
+                                            postUrl: fnews.url,
+                                          )));
+                            }),
                       )
                     ],
                   ),
